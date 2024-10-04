@@ -1,0 +1,2 @@
+"numeroPatrimonio","valorUnitario","codigoConta","contaAtual","descricaoMaterial","descricaoSubGrupo",
+"dataInclusao","nomeFornecedor","descricaoCompleta","destinoTransferencia","municipioTransferencia","descricao","descricaoTipoVeiculo"
