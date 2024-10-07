@@ -4,14 +4,15 @@ from dataset import df
 from utils import format_number,df_entregas_municipio,Porcentagemdf1
 from PIL import Image 
 import plotly.express as px
-import urllib.request
+import urllib.request 
+
 # from dotenv import load_dotenv
 # import os
 # import openai
 # load_dotenv()
 
 # teste usando IA para puxar imagem 
-# openai.api_key = ('sk-A9CLblel_KJSOTga1Lr_HCxyQGWO3bJEIQqpYtw_ABT3BlbkFJibzFr2CSCv3Wu8XCXpcnke5iRCMRXascIn4JrKWs4A')
+
 
 # side bar logo pricipal
 st.sidebar.image("dados/imagens/logoseaf.png") 
@@ -56,7 +57,7 @@ def metrics():
 metrics()
 
 # st.markdown(f"## {maq1_stats['contaAtual']}")
-
+ 
 # st.dataframe(Porcentagemdf) 
 st.dataframe(Porcentagemdf1)
 
