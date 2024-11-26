@@ -1,0 +1,22 @@
+# usando IA 
+# with tab3:
+    
+#     def gera_imagem(descricao_img):
+    
+#         imagem_resposta = openai.images.generate(
+#             model='dall-e-2',
+#             prompt= descricao_img,
+#             size= '512x512',
+#             quality='standard',
+#             n=1,
+#         )
+#         # imagem_url = imagem_resposta['data'][0]['url']
+#         imagem_url = imagem_resposta.data[0].url
+#         urllib.request.urlretrieve(imagem_url, "img.png")
+#         imagem = Image.open("img.png")
+#         return imagem
+    
+#     st.title("geracao dall 3")
+#     img_criada= gera_imagem(str(equipamentos)) 
+#     st.image(img_criada)
+

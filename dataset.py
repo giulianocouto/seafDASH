@@ -13,14 +13,15 @@ import pandas as pd
 file = open('dados/sigpattodos.json', encoding="utf8")
 data = json.load(file)
 
+
 df = pd.DataFrame.from_dict(data)
 
 
 #  pegar dados json contaAtual
-file1 = open('dados/sigpatconta.json', encoding="utf8")
+file1 = open('dados/sigpatcontaRel.json', encoding="utf8")
 data1 = json.load(file1)
 
-df1 = pd.DataFrame.from_dict(data)
+df1 = pd.DataFrame.from_dict(data1)
 
 
 # list(df.columns.values)

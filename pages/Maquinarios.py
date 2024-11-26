@@ -11,7 +11,7 @@ import seaborn as sns
 
 # side bar logo pricipal
 st.sidebar.image("dados/imagens/logoseaf.png")
-st.title('MAQUINÁRIOS / Graficos')
+st.title('Todos bens  / Graficos')
 
 with st.expander('Colunas'):
     colunas = st.multiselect(
@@ -35,7 +35,7 @@ with st.sidebar.expander('Equipamento'):
     equipamentos = st.multiselect(
         'Selecione os equipamentos',
         df['descricaoCompleta'].unique(),
-        # df['descricaoCompleta'].unique()
+         df['descricaoCompleta'].unique()
     )
 with st.sidebar.expander('Valor Unitário'):
     valor = st.slider(

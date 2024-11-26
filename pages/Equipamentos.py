@@ -6,21 +6,12 @@ from PIL import Image
 import plotly.express as px
 import urllib.request 
 
-# from dotenv import load_dotenv
-# import os
-# import openai
-# load_dotenv()
-
-# teste usando IA para puxar imagem 
-
-
 # side bar logo pricipal
 st.sidebar.image("dados/imagens/logoseaf.png") 
 if "data" not in st.session_state:
     st.session_state["data"] = df
 
 df = st.session_state["data"]
-
 # pegar municipios, 
 
 municipios = df["municipioTransferencia"].value_counts().index
@@ -75,31 +66,7 @@ st.dataframe(Porcentagemdf1)
 #          caption='escavadeira',
 #          use_column_width='auto')
 
-
-
-                  
-# usando IA 
-# with tab3:
-    
-#     def gera_imagem(descricao_img):
-    
-#         imagem_resposta = openai.images.generate(
-#             model='dall-e-2',
-#             prompt= descricao_img,
-#             size= '512x512',
-#             quality='standard',
-#             n=1,
-#         )
-#         # imagem_url = imagem_resposta['data'][0]['url']
-#         imagem_url = imagem_resposta.data[0].url
-#         urllib.request.urlretrieve(imagem_url, "img.png")
-#         imagem = Image.open("img.png")
-#         return imagem
-    
-#     st.title("geracao dall 3")
-#     img_criada= gera_imagem(str(equipamentos)) 
-#     st.image(img_criada)
-
+                 
 
 # with tab4:
 #     df1 = px.data.gapminder().query("year == 2007")
@@ -108,10 +75,6 @@ st.dataframe(Porcentagemdf1)
 #                             projection= "natural earth" ) 
 #     grafico
          
-
-
-
-
 
 # image_file = st.file_uploader("Carregue uma foto e aplique um filtro no menu lateral", type=['jpg', 'jpeg', 'png'])
 

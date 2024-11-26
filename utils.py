@@ -9,9 +9,9 @@ import time
 def format_number(value, prefix = ''):
     for unit in ['', 'mil']:
         if value < 1000:
-            return f'{prefix} {value:.2f} {unit}'
-        value /= 100000
-    return f'{prefix} {value:.2f} milhões'
+            return f'{prefix} {value:.4f} {unit}'
+        value /= 10000
+    return f'{prefix} {value:.4f} milhões'
 
 
 df_rec_municipio = df.groupby('municipioTransferencia')[['valorUnitario']].sum()
@@ -86,7 +86,7 @@ df_entregas_municipio1 =pd.DataFrame(df.groupby(['municipioTransferencia']).agg(
 
 # df_entregas_municipio2=len(df[df['municipioTransferencia']== 'ACORIZAL'])
 
-
+df1_contascontabeis = pd.DataFrame(df.groupby('contaAtual')['valorUnitario'].agg(['sum','count']))
 
 
 Porcentagemdf =  pd.DataFrame(df['valorUnitario'] / df.groupby('municipioTransferencia')['valorUnitario'].transform('sum'))
