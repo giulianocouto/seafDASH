@@ -37,11 +37,11 @@ with st.sidebar.expander('Equipamento'):
         df['descricaoCompleta'].unique(),
          df['descricaoCompleta'].unique()
     )
-with st.sidebar.expander('Valor Unitário'):
-    valor = st.slider(
-        'Selecione o Valor', 0.0, 5000000.0, (25.0, 75.0)
+# with st.sidebar.expander('Valor Unitário'):
+#     valor = st.slider(
+#         'Selecione o Valor', 0.0, 5000000.0, (25.0, 75.0)
        
-    )
+#     )
 
 with st.sidebar.expander('Data inclusão'):
     
@@ -71,13 +71,12 @@ with st.sidebar.expander('Status do Bem'):
 query = ''' 
     `contaAtual` in @conta and \
     `descricaoCompleta` in @equipamentos and \
-    @valor[0] <= valorUnitario  <= @valor[1] and \
     @data_inclusao[0] <= `dataInclusao` <= @data_inclusao[1] and \
     `municipioTransferencia` in @municipio and \
     `status` in @status
     
 '''
-
+# @valor[0] <= valorUnitario  <= @valor[1] and \
 filtro_dados = df.query(query)
 filtro_dados = filtro_dados[colunas]
 
@@ -116,7 +115,9 @@ def metrics():
    from streamlit_extras.metric_cards import style_metric_cards
    col1,col2,col3=st.columns(3)
    col1.metric("Total Itens", value=filtro_dados.shape[0], delta="Total Itens")
-   col2.metric("Total valor municipio", value=f"{filtro_dados.valorUnitario.sum():,.0f}", delta="Total valor municipio")
+   col2.metric("Total valor municipio", value=f"R$ {filtro_dados.valorUnitario.sum():,.3f}", delta="Total valor municipio")
+#    metric('Valor equipamento',value=format_number(equipe_stats['valorUnitario'], 'R$'), delta="Valor equipamento")
+   
 
    style_metric_cards(background_color="#071021",border_left_color="#2a66af")
 
@@ -222,11 +223,6 @@ if selected=="Tabela Minimizada":
 # filtro_dados.describe().T
 
 
-
-
-
-
-
 # ate 08/09   
 # col1, col2 = st.columns((2))
 # df["dataInclusao"] = pd.to_datetime(df["dataInclusao"])
@@ -273,30 +269,6 @@ if selected=="Tabela Minimizada":
 #          use_column_width='auto')
 # st.metric('total de itens', format_number(filtro_dados.shape[0]))
 # ate 08/09  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

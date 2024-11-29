@@ -31,9 +31,7 @@ equipe_stats = df_maquinarios[df_maquinarios["descricaoCompleta"] == equipe1].il
 
 st.title(f"{maq1_stats['contaAtual']}")
 st.markdown(f"Municipio: {maq1_stats['municipioTransferencia']}")
-# st.metric('total do equipamento', format_number(maq1_stats['valorUnitario'].sum(), 'R$'))
-# st.metric('total de Contas', (maq.shape[0]))
-# st.metric('tolal por equipamentos',(equipe.shape[0]))
+
 
 
 def metrics():

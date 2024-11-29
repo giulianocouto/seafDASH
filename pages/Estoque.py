@@ -1,11 +1,16 @@
 import streamlit as st
 from dataset import df
 import plotly.express as px
-from utils import convert_csv, mensagem_sucesso
+from utils import convert_csv, mensagem_sucesso, format_number,Porcentagemdf
 
 st.title('Estoque Geral (para exportar .CSV) por Município')
 # side bar logo pricipal
 st.sidebar.image("dados/imagens/logoseaf.png")
+
+if "data" not in st.session_state:
+    st.session_state["data"] = df
+
+df = st.session_state["data"]
 
 with st.expander('Colunas'):
     colunas = st.multiselect(
@@ -23,12 +28,12 @@ with st.sidebar.expander('Grupo Equipamentos(Conta atual)'):
         df['contaAtual'].unique()
 
     )
-with st.sidebar.expander('Valor Unitário'):
-    valor = st.slider(
-        'Selecione o Valor', 0.0, 5000000.0, (25.0, 75.0)
+# with st.sidebar.expander('Valor Unitário'):
+#     valor = st.slider(
+#         'Selecione o Valor', 0.0, 5000000.0, (25.0, 75.0)
 
        
-    )
+#     )
 
 with st.sidebar.expander('Data inclusão'):
     
@@ -48,11 +53,10 @@ with st.sidebar.expander('Município'):
 
 query = '''
     `contaAtual` in @equipamentos and \
-    @valor[0] <= valorUnitario  <= @valor[1] and \
     @data_inclusao[0] <= `dataInclusao` <= @data_inclusao[1] and \
     `municipioTransferencia` in @municipio
 '''
-
+#  @valor[0] <= valorUnitario  <= @valor[1] and \
 filtro_dados = df.query(query)
 filtro_dados = filtro_dados[colunas]
 
@@ -63,6 +67,7 @@ st.dataframe(filtro_dados)
 st.markdown(f'A tabela possui :blue[{filtro_dados.shape[0]}]  linhas e :blue[{filtro_dados.shape[1]}] colunas')
 
 st.markdown('Nome do arquivo')
+st.metric('total do equipamento', format_number(filtro_dados['valorUnitario'].sum(), 'R$'))
 
 coluna1, coluna2 = st.columns(2)
 with coluna1:

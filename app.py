@@ -66,10 +66,17 @@ with aba4:
     y= df1_contascontabeis[['sum']].sort_values('sum', ascending= False).head(150).index,
     text_auto= True,
     title= 'Valor total Contas contabeis'
+    
+
+
+
 
 )
     with coluna1:
         st.metric('total por Contas Contabeis', format_number(df1['valorTotal'].sum(), 'R$'))
         st.plotly_chart(grafico_contascontabeis, use_container_width= True)
-        st.markdown("""<h3 style="color:#002b50;">Código Contas Contabil: 52025, 52036, 52037, 52006, 52054, 52026, 52073, 52001, 52009</h3>""",unsafe_allow_html=True)
+        st.markdown("""<h3 style="color:#102b50;">Código Contas Contabil: 52025, 52036, 52037, 52006, 52054, 52026, 52073, 52001, 52009</h3>""",unsafe_allow_html=True)
+        
 
+
+       

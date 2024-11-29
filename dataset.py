@@ -24,17 +24,9 @@ data1 = json.load(file1)
 df1 = pd.DataFrame.from_dict(data1)
 
 
-# list(df.columns.values)
-
-# print(df['listaViewInventario'].to_string(index=False))
-
-# df['dataInclusao'] = pd.to_datetime(df['dataInclusao'])
-
 
 df['dataInclusao'] = pd.to_datetime(df['dataInclusao'], format='%Y-%m-%d', dayfirst= True)
 
-# type(df['dataInclusao'][0])
-df
-# print(df)
+# df
 
 file.close()
