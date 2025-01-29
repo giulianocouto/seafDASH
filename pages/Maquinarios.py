@@ -7,7 +7,8 @@ from PIL import Image
 import altair as alt
 import numpy as num
 import matplotlib.pyplot as plt
-import seaborn as sns
+import seaborn as sns 
+
 
 # side bar logo pricipal
 st.sidebar.image("dados/imagens/logoseaf.png")
@@ -115,19 +116,21 @@ def metrics():
    from streamlit_extras.metric_cards import style_metric_cards
    col1,col2,col3=st.columns(3)
    col1.metric("Total Itens", value=filtro_dados.shape[0], delta="Total Itens")
-   col2.metric("Total valor municipio", value=f"R$ {filtro_dados.valorUnitario.sum():,.3f}", delta="Total valor municipio")
-#    metric('Valor equipamento',value=format_number(equipe_stats['valorUnitario'], 'R$'), delta="Valor equipamento")
-   
+#    col2.metric("Total valor municipio",value=format_number(filtro_dados['valorUnitario'], 'R$'), delta="Total valor municipio")
+   col2.metric("Total valor municipio", value=f"R$ {filtro_dados.valorUnitario.sum():.2f}", delta="Total valor municipio")
+
+#    col4.metric('Valor equipamento',value=format_number(equipe_stats['valorUnitario'], 'R$'), delta="Valor equipamento")
 
    style_metric_cards(background_color="#071021",border_left_color="#2a66af")
 
-# metrics()   
+# metrics()             
 
 #pie chart
 div1, div2=st.columns(2)
 def pie():
-    with div1:
+    with div1:                                 
         theme_plotly=None
+        # fig=px.pie(filtro_dados,values=format_number("valorUnitario"),names="descricaoCompleta", title= "Município e valor")
         fig=px.pie(filtro_dados,values="valorUnitario",names="descricaoCompleta", title= "Município e valor")
         fig.update_layout(legend_title="Descricao", legend_y=0.9)
         fig.update_traces(textinfo="percent+label", textposition="inside")

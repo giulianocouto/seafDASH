@@ -44,7 +44,7 @@ with aba1:
 with aba2:
     coluna1, coluna2 = st.columns(2)
     with coluna1:
-        st.metric('total do equipamento', format_number(Porcentagemdf['valorUnitario'].sum(), 'R$'))
+        st.metric('Total Equipamentos', format_number(Porcentagemdf['valorUnitario'].sum(), 'R$'))
         
 
     with coluna2:

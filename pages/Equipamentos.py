@@ -36,12 +36,12 @@ st.markdown(f"Municipio: {maq1_stats['municipioTransferencia']}")
 
 def metrics():
    from streamlit_extras.metric_cards import style_metric_cards
-   col1,col2,col3,col4 =st.columns(4)
+   col1,col2,col3,col4,col5 =st.columns(5)
    col1.metric("Valor Total do equipamento", value=format_number(maq1_stats['valorUnitario'].sum(), 'R$'), delta="Valor Total do equipamento")
    col2.metric("Total de Contas", value=f"{(maq.shape[0])}",delta="Total de Contas")
    col3.metric('Total por equipamentos',(equipe.shape[0]),delta="Total por equipamento")
    col4.metric('Valor equipamento',value=format_number(equipe_stats['valorUnitario'], 'R$'), delta="Valor equipamento")
-
+   col5.metric('Total Grupos Equipamentos',value=format_number(df_maquinarios['valorUnitario'].sum(), 'R$'), delta="Total Grupos Equipamentos")
    style_metric_cards(background_color="#080054",border_left_color="#2a65ff")
 metrics()
 
