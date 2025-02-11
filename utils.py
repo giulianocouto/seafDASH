@@ -7,7 +7,7 @@ import time
 
 
 def format_number(value, prefix = ''):
-    for unit in ['Real', 'Mil']:
+    for unit in ['', 'Mil']:
         if value < 1000:
             return f'{prefix} {value:.2f} {unit}'
         value /= 100000
