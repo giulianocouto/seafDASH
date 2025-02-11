@@ -38,7 +38,7 @@ columns = ["numeroPatrimonio","valorUnitario","codigoConta","descricaoMaterial",
 
 st.dataframe(df_filtred[columns],
              column_config={
-                 "valorUnitario": st.column_config.ProgressColumn("valorUnitario", format="R$ %.1f",min_value=10000, max_value=10000000),
+                 "valorUnitario": st.column_config.ProgressColumn("valorUnitario", format="R$ %.2f",min_value=10000, max_value=1000000),
                 #  "valorUnitario": st.column_config.NumberColumn()
              }, height=1000)
 

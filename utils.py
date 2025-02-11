@@ -7,11 +7,19 @@ import time
 
 
 def format_number(value, prefix = ''):
-    for unit in ['', 'mil']:
+    for unit in ['Real', 'Mil']:
         if value < 1000:
-            return f'{prefix} {value:.3f} {unit}'
+            return f'{prefix} {value:.2f} {unit}'
         value /= 100000
-    return f'{prefix} {value:.3f} milhões'
+    return f'{prefix} {value:.2f} Milhões '
+
+
+# def format_number(value, prefix = ''):
+#     for unit in ['', 'mil']:
+#         if value < 1000:
+#             return f'{prefix} {value:.3f} {unit}'
+#         value /= 10000
+#     return f'{prefix} {value:.3f} milhões'
 
 
 df_rec_municipio = df.groupby('municipioTransferencia')[['valorUnitario']].sum()

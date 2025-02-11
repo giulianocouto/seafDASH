@@ -57,7 +57,7 @@ with st.sidebar.expander('Município'):
     municipio = st.multiselect(
         'Selecione Municípios',
         df['municipioTransferencia'].unique(),
-        # df['municipioTransferencia'].unique()
+        df['municipioTransferencia'].unique()
     
     )
 
@@ -80,13 +80,21 @@ query = '''
 # @valor[0] <= valorUnitario  <= @valor[1] and \
 filtro_dados = df.query(query)
 filtro_dados = filtro_dados[colunas]
+filtro_dadosPie =  df.query(query)
+filtro_dadosPie= filtro_dados[colunas]
+
+filtro_dados.style.highlight_min(subset=['valorUnitario'], color='red', props= 'background-color: yellow; color: black').highlight_max(subset=['valorUnitario'], color='red')
+filtro_dados.style.format({'valorUnitario': '{:,.2f}'})
+filtro_dados['valorUnitario'] = filtro_dados['valorUnitario'].apply(format_number)
+
 
 st.dataframe(filtro_dados)
+
 
 # coletar numero de linhas que tem dentro do dataframe com uso do f string
 st.markdown(f'A tabela possui :blue[{filtro_dados.shape[0]}]  linhas e :blue[{filtro_dados.shape[1]}] colunas')
 
-st.markdown('Nome do arquivo')
+st.markdown('Salvar arquivo com o nome ')
 
 coluna1, coluna2 = st.columns(2)
 with coluna1:
@@ -113,15 +121,19 @@ contagem_linhas = len(filtro_dados.index)
 
 
 def metrics():
+   filtro_dados = df.query(query)
+   filtro_dados = filtro_dados[colunas]
    from streamlit_extras.metric_cards import style_metric_cards
    col1,col2,col3=st.columns(3)
-   col1.metric("Total Itens", value=filtro_dados.shape[0], delta="Total Itens")
-#    col2.metric("Total valor municipio",value=format_number(filtro_dados['valorUnitario'], 'R$'), delta="Total valor municipio")
-   col2.metric("Total valor municipio", value=f"R$ {filtro_dados.valorUnitario.sum():.2f}", delta="Total valor municipio")
-
-#    col4.metric('Valor equipamento',value=format_number(equipe_stats['valorUnitario'], 'R$'), delta="Valor equipamento")
+   col1.metric("Total por equipamentos", value=f"{filtro_dados.descricaoCompleta.shape[0]}", delta="Total por equipamentos")
+   col2.metric('Total valor municipio',value=format_number(filtro_dados['valorUnitario'].sum()), delta="Total valor municipio")
+                
 
    style_metric_cards(background_color="#071021",border_left_color="#2a66af")
+
+
+#    col2.metric("Total de Contas", value=f"{(maq.shape[0])}",delta="Total de Contas")
+#    col3.metric('Total por equipamentos',(equipe.shape[0]),delta="Total por equipamento") 
 
 # metrics()             
 
@@ -130,13 +142,10 @@ div1, div2=st.columns(2)
 def pie():
     with div1:                                 
         theme_plotly=None
-        # fig=px.pie(filtro_dados,values=format_number("valorUnitario"),names="descricaoCompleta", title= "Município e valor")
-        fig=px.pie(filtro_dados,values="valorUnitario",names="descricaoCompleta", title= "Município e valor")
+        fig=px.pie(filtro_dadosPie ,values="valorUnitario",names="descricaoCompleta", title= "Município e valor")
         fig.update_layout(legend_title="Descricao", legend_y=0.9)
         fig.update_traces(textinfo="percent+label", textposition="inside")
         st.plotly_chart(fig,use_container_width=True,theme=theme_plotly)
-# pie()
-
 
 #bar chart
 
@@ -224,7 +233,6 @@ if selected=="Gráficos":
 if selected=="Tabela Minimizada":
      table()
 # filtro_dados.describe().T
-
 
 # ate 08/09   
 # col1, col2 = st.columns((2))

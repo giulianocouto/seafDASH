@@ -14,8 +14,8 @@ def load_data():
 #  carregar dados
 data = load_data()
 df = data
-st.table(df.head(10))
-
+# st.table(df.head(10))
+df['dataInclusao'] = pd.to_datetime(df['dataInclusao'], format='%Y-%m-%d', dayfirst= True)
 # pegar dic response.json()'
 #  pegar dados json todos geral
 
@@ -29,6 +29,6 @@ file1 = open('dados/sigpatcontaRel.json', encoding="utf8")
 data1 = json.load(file1)
 
 df1 = pd.DataFrame.from_dict(data1)
-df['dataInclusao'] = pd.to_datetime(df['dataInclusao'], format='%Y-%m-%d', dayfirst= True)
 
 # file.close()
+# print(df)

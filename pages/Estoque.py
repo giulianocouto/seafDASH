@@ -61,13 +61,23 @@ filtro_dados = df.query(query)
 filtro_dados = filtro_dados[colunas]
 
 
+filtro_dados1 = df.query(query)
+filtro_dados1 = filtro_dados[colunas]
+
+
+filtro_dados.style.highlight_min(subset=['valorUnitario'], color='red', props= 'background-color: yellow; color: black').highlight_max(subset=['valorUnitario'], color='red')
+filtro_dados.style.format({'valorUnitario': '{:,.2f}'})
+filtro_dados['valorUnitario'] = filtro_dados['valorUnitario'].apply(format_number)
+
+
+
 st.dataframe(filtro_dados)
 
 # coletar numero de linhas que tem dentro do dataframe com uso do f string
-st.markdown(f'A tabela possui :blue[{filtro_dados.shape[0]}]  linhas e :blue[{filtro_dados.shape[1]}] colunas')
+st.markdown(f'A tabela possui :blue[{filtro_dados1.shape[0]}]  linhas e :blue[{filtro_dados1.shape[1]}] colunas')
 
 st.markdown('Nome do arquivo')
-st.metric('total do equipamento', format_number(filtro_dados['valorUnitario'].sum(), 'R$'))
+st.metric('total do equipamento', format_number(filtro_dados1['valorUnitario'].sum(), 'R$'))
 
 coluna1, coluna2 = st.columns(2)
 with coluna1:
@@ -79,7 +89,7 @@ with coluna1:
 with coluna2:
     st.download_button(
         'Baixar arquivo',
-        data=convert_csv(filtro_dados),
+        data=convert_csv(filtro_dados1),
         file_name=nome_arquivo,
         mime='text/csv',
         on_click= mensagem_sucesso

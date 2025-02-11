@@ -30,16 +30,20 @@ filtro_municipio = st.sidebar.multiselect(
 )
 if filtro_municipio:
    Porcentagemdf = df[df['municipioTransferencia'].isin(filtro_municipio)]
-
+   Porcentagemdf1 = df[df['municipioTransferencia'].isin(filtro_municipio)] 
 
 # st.sidebar.title('Filtro por Entregas')
 
 # st.sidebar.title('Filtro por grupo de Maquinarios')
 
+Porcentagemdf1.style.highlight_min(subset=['valorUnitario'], color='red', props= 'background-color: yellow; color: black').highlight_max(subset=['valorUnitario'], color='red')
+Porcentagemdf1.style.format({'valorUnitario': '{:,.2f}'})
+Porcentagemdf1['valorUnitario'] = Porcentagemdf['valorUnitario'].apply(format_number)
+
 
 aba1, aba2, aba3, aba4 = st.tabs(['Dataset', 'Valor total invetário','Entregas Municipio', 'Total por Contas Contabeis'])
 with aba1:
-    st.dataframe(Porcentagemdf)
+    st.dataframe(Porcentagemdf1)
 
 with aba2:
     coluna1, coluna2 = st.columns(2)
@@ -66,16 +70,13 @@ with aba4:
     y= df1_contascontabeis[['sum']].sort_values('sum', ascending= False).head(150).index,
     text_auto= True,
     title= 'Valor total Contas contabeis'
-    
-
-
-
+ 
 
 )
     with coluna1:
         st.metric('total por Contas Contabeis', format_number(df1['valorTotal'].sum(), 'R$'))
         st.plotly_chart(grafico_contascontabeis, use_container_width= True)
-        st.markdown("""<h3 style="color:#102b50;">Código Contas Contabil: 52025, 52036, 52037, 52006, 52054, 52026, 52073, 52001, 52009</h3>""",unsafe_allow_html=True)
+        st.markdown("""<h3 style="color:#000050;">Código Contas Contabil: 52025, 52036, 52037, 52006, 52054, 52026, 52073, 52001, 52009</h3>""",unsafe_allow_html=True)
         
 
 
