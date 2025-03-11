@@ -9,9 +9,9 @@ import time
 def format_number(value, prefix = ''):
     for unit in ['', 'Mil']:
         if value < 1000:
-            return f'{prefix} {value:.2f} {unit}'
+            return f'{prefix} {value:.3f} {unit}'
         value /= 100000
-    return f'{prefix} {value:.2f} Milhões '
+    return f'{prefix} {value:.3f} Milhões '
 
 
 # def format_number(value, prefix = ''):

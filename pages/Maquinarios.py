@@ -77,6 +77,14 @@ query = '''
     `status` in @status
     
 '''
+# query = ''' 
+#     `contaAtual` in @conta and \
+#     `descricaoCompleta` in @equipamentos and \
+#     @data_inclusao[0] <= `dataInclusao` <= @data_inclusao[1] and \
+#     `destinoTransferencia` in @municipio and \
+#     `status` in @status
+    
+# '''
 # @valor[0] <= valorUnitario  <= @valor[1] and \
 filtro_dados = df.query(query)
 filtro_dados = filtro_dados[colunas]
