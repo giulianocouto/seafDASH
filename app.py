@@ -25,6 +25,7 @@ st.sidebar.title('Filtro por Municípos')
 
 filtro_municipio = st.sidebar.multiselect( 
     'Municipios',
+    df['municipioTransferencia'].unique(),
     df['municipioTransferencia'].unique()
 
 )
