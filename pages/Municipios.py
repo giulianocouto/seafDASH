@@ -7,7 +7,7 @@ import plotly.express as px
 from dataset import df
 
 st.set_page_config(
-page_title="Entregas agricultura familiar",
+page_title="Entregas Agricultura Familiar",
 page_icon="🚜",
 layout="wide"
 
