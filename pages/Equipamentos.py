@@ -5,6 +5,7 @@ from utils import format_number,df_entregas_municipio,Porcentagemdf1
 from PIL import Image 
 import plotly.express as px
 import urllib.request 
+from streamlit_extras.metric_cards import style_metric_cards
 
 # side bar logo pricipal
 st.sidebar.image("dados/imagens/logoseaf.png") 
@@ -35,7 +36,6 @@ st.markdown(f"Municipio: {maq1_stats['municipioTransferencia']}")
 
 
 def metrics():
-   from streamlit_extras.metric_cards import style_metric_cards
    col1,col2,col3,col4,col5 =st.columns(5)
    col1.metric("Valor Total do equipamento", value=format_number(maq1_stats['valorUnitario'].sum(), 'R$'), delta="Valor Total do equipamento")
    col2.metric("Total de Contas", value=f"{(maq.shape[0])}",delta="Total de Contas")

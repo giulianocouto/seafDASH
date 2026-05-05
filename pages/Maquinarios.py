@@ -7,7 +7,8 @@ from PIL import Image
 import altair as alt
 import numpy as num
 import matplotlib.pyplot as plt
-import seaborn as sns 
+import seaborn as sns
+import seaborn.objects as so
 
 
 # side bar logo pricipal
@@ -78,6 +79,7 @@ query = '''
     
 '''
 # query = ''' 
+
 #     `contaAtual` in @conta and \
 #     `descricaoCompleta` in @equipamentos and \
 #     @data_inclusao[0] <= `dataInclusao` <= @data_inclusao[1] and \
